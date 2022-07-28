@@ -14,7 +14,7 @@ osrm_matrix(x, y, osrm.profile)
 \item{osrm.profile}{the routing profile to use, e.g. "car", "bike" or "foot" (when using the routing.openstreetmap.de test server). "car" is the default.}
 }
 \value{
-osrm_matrix() returns a data.frame object with id_o (row ID of x), id_d (row ID of y), and dur (travel distance between each element of x and that of y).
+osrm_matrix() returns a data.frame object with id_o (row ID of x), id_d (row ID of y), and dur (travel time between each element of x and that of y) in minutes.
 }
 \description{
 Calculate distance matrix based on OpenStreetMap-Based Routing Service OSRM.
