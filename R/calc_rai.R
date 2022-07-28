@@ -18,11 +18,6 @@
 ####################################################################################################
 #Compute Rural Access Index
 ####################################################################################################
-#line <- st_read(here("data","tanzania_gis_osm_paved.shp"))
-#urban <- st_read(here("data","urban_tanzania.shp"))
-#admin <- st_read(here("data","sdr_subnational_boundaries2.shp"))
-#pop <- raster(here("data","tza_ppp_2020_constrained.tif"))
-
 calc_rai <- function(admin, line, urban, pop, epsg_utm, dist) {
 #epsg_utm = 21035
 #dist = 2000
