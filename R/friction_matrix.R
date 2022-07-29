@@ -14,6 +14,7 @@
 #Compute distance matrix using OpenStreetMap-Based Routing Service OSRM
 ####################################################################################################
 friction_matrix <- function(x, y, friction) {
+
 e <- extent(x)
 xmin <- e[1] - 1
 xmax <- e[2] + 1
@@ -30,12 +31,12 @@ x <- as_Spatial(x)
 x$id <- seq(1:dim(x)[1])
 y <- as_Spatial(y)
 y$id <- seq(1:dim(y)[1])
-dist.mat <- data.frame(id=as.numeric(),
-                       variable=character(),
-                       value=as.numeric(),
+dist.mat <- data.frame(id_o=as.integer(),
+                       id_d=as.character(),
+                       dur=as.numeric(),
                        stringsAsFactors=FALSE)
 
-d_list <- unique(y$id)
+d_list <- unique(x$id)
 for(n in d_list) {
   dist <- costDistance(T.GC,
                        fromCoords = x[x$id==n,],
@@ -47,5 +48,6 @@ for(n in d_list) {
   print(paste0("done with x =",n))
 }
 colnames(dist.mat) <- c("id_o","id_d","dur")
+dist.mat$id_d <- as.integer(gsub("[a-zA-Z ]", "", dist.mat$id_d))
 dist.mat
 }
