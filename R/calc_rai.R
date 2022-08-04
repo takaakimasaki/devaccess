@@ -8,10 +8,10 @@
 #' @export
 #' @return calc_rai returns a data.frame object with pop_rural (rural population), pop_urban (urban population), pop_urban_s (percent of urban population), pop_rural_osm (rural population living under dist km from line), and rai (Rural Access Index or percent of rural population living under dist km from line).
 #' @examples
-#' line <- st_read(here("data-raw","zamzibar_osm_road.shp")) ##road network
-#' urban <- st_read(here("data-raw","urban_tanzania.shp")) ##urban area
-#' admin <- st_read(here("data-raw","zanzibar_dhs_adm1.shp")) ##administrative boundaries
-#' pop <- raster(here("data-raw","zanzibar_ppp_2020_constrainted.tif")) ##population raster
+#' line <- sf::st_read("data-raw/zamzibar_osm_road.shp") ##road network
+#' urban <- sf::st_read("data-raw/urban_tanzania.shp") ##urban area
+#' admin <- sf::st_read("data-raw/zanzibar_dhs_adm1.shp") ##administrative boundaries
+#' pop <- raster("data-raw/zanzibar_ppp_2020_constrainted.tif") ##population raster
 #' rai <- calc_rai(admin, line, urban, pop, epsg_utm = 21035, dist = 2000)
 #' @import sf dplyr exactextractr
 #' @importFrom raster raster crop mask

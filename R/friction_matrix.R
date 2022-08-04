@@ -10,13 +10,14 @@
 #' friction_matrix(tz, tz, friction)
 #' @import sf gdistance
 #' @importFrom reshape melt
+#' @importFrom raster extent
 
 ####################################################################################################
 #Compute distance matrix using OpenStreetMap-Based Routing Service OSRM
 ####################################################################################################
 friction_matrix <- function(x, y, friction) {
 
-e <- extent(x)
+e <- raster::extent(x)
 xmin <- e[1] - 1
 xmax <- e[2] + 1
 ymin <- e[3] - 1
