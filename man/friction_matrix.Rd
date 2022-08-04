@@ -19,3 +19,8 @@ friction_matrix() returns a data.frame object with id_o (row ID of x), id_d (row
 \description{
 Calculate distance matrix using your own specified friction map.
 }
+\examples{
+tz <- read.csv("data/tz.csv") \%>\%  st_as_sf(coords = c('lng', 'lat'),crs=st_crs(4326))
+friction <- raster("data/2015_friction_surface_v1.geotiff") ## this needs to be downloaded
+friction_matrix(tz, tz, friction)
+}

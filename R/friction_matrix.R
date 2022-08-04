@@ -6,9 +6,10 @@
 #' @return friction_matrix() returns a data.frame object with id_o (row ID of x), id_d (row ID of y), and dur (travel time between each element of x and that of y) in minutes.
 #' @examples
 #' tz <- read.csv("data/tz.csv") %>%  st_as_sf(coords = c('lng', 'lat'),crs=st_crs(4326))
-#' friction <- raster("data/2015_friction_surface_v1.geotiff) ## this needs to be downloaded
+#' friction <- raster("data/2015_friction_surface_v1.geotiff") ## this needs to be downloaded
 #' friction_matrix(tz, tz, friction)
-#' @import sf reshape gdistance
+#' @import sf gdistance
+#' @importFrom reshape melt
 
 ####################################################################################################
 #Compute distance matrix using OpenStreetMap-Based Routing Service OSRM
@@ -24,7 +25,7 @@ e <- c(xmin, xmax, ymin, ymax)
 
 #Now use scripts from https://insileco.github.io/2019/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/
 ###The above code to get friction surface just takes so much time...
-friction <- friction %>% crop(., e)
+friction <- friction %>% raster::crop(., e)
 T <- gdistance::transition(friction, function(x) 1/mean(x), 8)
 T.GC <- gdistance::geoCorrection(T)
 x <- as_Spatial(x)
@@ -43,7 +44,7 @@ for(n in d_list) {
                        toCoords = y)
   dist_df <- data.frame(dist)
   dist_df$id <- n
-  dist_df <- melt(dist_df, id=c("id"))
+  dist_df <- reshape::melt(dist_df, id=c("id"))
   dist.mat <- rbind(dist.mat, dist_df)
   print(paste0("done with x =",n))
 }

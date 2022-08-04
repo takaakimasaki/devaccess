@@ -7,7 +7,8 @@
 #' @examples
 #' tz <- read.csv("data/tz.csv") %>%  st_as_sf(coords = c('lng', 'lat'),crs=st_crs(4326))
 #' osrm_matrix(tz, tz, "car")
-#' @import sf osrm reshape
+#' @import sf osrm
+#' @importFrom reshape melt
 
 ####################################################################################################
 #Compute distance matrix using OpenStreetMap-Based Routing Service OSRM
@@ -27,7 +28,7 @@ for(m in 1:dim(x)[1]) {
                         osrm.profile = osrm.profile)
       dist <- as.data.frame(dist$duration)
       dist$id <- row.names(dist)
-      dist <- melt(dist, id=c("id"))
+      dist <- reshape::melt(dist, id=c("id"))
       colnames(dist) <- c("id_o","id_d","dur")
       df <- rbind(df,dist)
       print(paste0("done with x=",n,", y=",m))
