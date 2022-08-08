@@ -26,9 +26,11 @@ calc_rai returns a data.frame object with pop_rural (rural population), pop_urba
 Calculate rural access index.
 }
 \examples{
-line <- sf::st_read("data-raw/zamzibar_osm_road.shp") ##road network
-urban <- sf::st_read("data-raw/urban_tanzania.shp") ##urban area
-admin <- sf::st_read("data-raw/zanzibar_dhs_adm1.shp") ##administrative boundaries
+\dontrun{
+line <- sf::st_read("data/zamzibar_osm_road.shp") ##road network
+urban <- sf::st_read("data/urban_tanzania.shp") ##urban area
+admin <- sf::st_read("data/zanzibar_dhs_adm1.shp") ##administrative boundaries
 pop <- raster("data-raw/zanzibar_ppp_2020_constrainted.tif") ##population raster
 rai <- calc_rai(admin, line, urban, pop, epsg_utm = 21035, dist = 2000)
+}
 }

@@ -5,9 +5,11 @@
 #' @export
 #' @return friction_matrix() returns a data.frame object with id_o (row ID of x), id_d (row ID of y), and dur (travel time between each element of x and that of y) in minutes.
 #' @examples
+#' \dontrun{
 #' tz <- read.csv("data/tz.csv") %>%  st_as_sf(coords = c('lng', 'lat'),crs=st_crs(4326))
 #' friction <- raster("data/2015_friction_surface_v1.geotiff") ## this needs to be downloaded
 #' friction_matrix(tz, tz, friction)
+#' }
 #' @import sf gdistance
 #' @importFrom reshape melt
 #' @importFrom raster extent

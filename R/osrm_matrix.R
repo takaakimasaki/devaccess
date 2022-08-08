@@ -5,8 +5,10 @@
 #' @export
 #' @return osrm_matrix() returns a data.frame object with id_o (row ID of x), id_d (row ID of y), and dur (travel time between each element of x and that of y) in minutes.
 #' @examples
+#' \dontrun{
 #' tz <- read.csv("data/tz.csv") %>%  st_as_sf(coords = c('lng', 'lat'),crs=st_crs(4326))
 #' osrm_matrix(tz, tz, "car")
+#' }
 #' @import sf osrm
 #' @importFrom reshape melt
 

@@ -20,6 +20,8 @@ osrm_matrix() returns a data.frame object with id_o (row ID of x), id_d (row ID 
 Calculate distance matrix based on OpenStreetMap-Based Routing Service OSRM.
 }
 \examples{
+\dontrun{
 tz <- read.csv("data/tz.csv") \%>\%  st_as_sf(coords = c('lng', 'lat'),crs=st_crs(4326))
 osrm_matrix(tz, tz, "car")
+}
 }
