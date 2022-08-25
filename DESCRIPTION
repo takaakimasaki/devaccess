@@ -8,7 +8,7 @@ Author:
   person('Koichi', 'Ito', email = 'koichi19960406@gmail.com', role = c('aut'))
 Maintainer: Takaaki Masaki <tmasaki@worldbank.org>
 Description: This package offers a number of different functions to calculate various measures of accessibility and travel time.
-License: TBD
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.1
