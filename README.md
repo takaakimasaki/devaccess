@@ -25,4 +25,4 @@ In some countries, you do not necessarily have data on the population size of a 
 `city_bound()` allows you to create your own shapefile of city boundaries based on any population raster data and any threshold of population density you choose to determine which area should be considered as part of cities. 
 
 ### Counting the number of points by administrative areas
-`count_pts()` allows you to count the number of points that lie within each polygon boundaries of your choice. 
+`count_pts()` allows you to count the number of points that lie within each polygon. 
