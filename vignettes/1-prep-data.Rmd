@@ -1,0 +1,28 @@
+---
+title: "Prep data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How_to_use_Evitlas}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+conflictRules("tidyr", mask.ok = c("extract"))
+conflictRules("dplyr", mask.ok = c("filter", "lag", "select"))
+pacman::p_load(devtools,dplyr,tidyverse, sf)
+```
+
+```{r}
+tz <- read_csv(here::here("inst","extdata","tz.csv")) 
+urban <- st_read(here::here("inst","extdata","urban_tanzania.shp"))
+bounds_adm2 <- st_read(here::here("inst","extdata","sdr_subnational_boundaries2.shp"))
+bounds_adm1 <- st_read(here::here("inst","extdata","zanzibar_dhs_adm1.shp"))
+zanzibar_osm_road <- st_read(here::here("inst","extdata","zanzibar_osm_road.shp"))
+pop <- raster(here::here("inst","extdata","zanzibar_ppp_2020_constrainted.tif"))
+usethis::use_data(tz, urban, bounds_adm2, bounds_adm1, zanzibar_osm_road, pop, overwrite=TRUE)
+```

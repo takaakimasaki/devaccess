@@ -6,9 +6,7 @@
 #' @return `count_pts()` returns a data.frame object with id (location ID) and number of points by id.
 #' @examples
 #' \dontrun{
-#' admin <- sf::st_read("inst/extdata/zanzibar_dhs_adm1.shp") ##administrative boundaries
-#' tz <- read.csv("inst/extdata/tz.csv") %>%  st_as_sf(coords = c('lng', 'lat'),crs=st_crs(4326))
-#' count_pts(admin, tz, "REG_ID")
+#' count_pts(admin, tz, id)
 #' }
 #' @import sf dplyr
 
@@ -16,10 +14,10 @@
 #Count the number of points by location.
 ####################################################################################################
 count_pts <-function(sf,pts,id){
-  if(projection(sf)!="+proj=longlat +datum=WGS84 +no_defs") {
+  if(raster::projection(sf)!="+proj=longlat +datum=WGS84 +no_defs") {
     sf <- sf %>% st_transform(4326)
   }
-  if(projection(pts)!="+proj=longlat +datum=WGS84 +no_defs") {
+  if(raster::projection(pts)!="+proj=longlat +datum=WGS84 +no_defs") {
     pts <- pts %>% st_transform(4326)
   }
   id_o <- as.name(id)
