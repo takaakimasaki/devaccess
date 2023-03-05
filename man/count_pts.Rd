@@ -21,8 +21,6 @@ Count the number of points by location.
 }
 \examples{
 \dontrun{
-admin <- sf::st_read("inst/extdata/zanzibar_dhs_adm1.shp") ##administrative boundaries
-tz <- read.csv("inst/extdata/tz.csv") \%>\%  st_as_sf(coords = c('lng', 'lat'),crs=st_crs(4326))
-count_pts(admin, tz, "REG_ID")
+count_pts(admin, tz, id)
 }
 }

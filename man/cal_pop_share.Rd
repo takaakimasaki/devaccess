@@ -4,7 +4,7 @@
 \alias{cal_pop_share}
 \title{Compute the share of population in a certain distance from points (e.g., conflicts, cities).}
 \usage{
-cal_pop_share(sf, pts, pop, epsg_utm, dist)
+cal_pop_share(sf, pts, pop, epsg_utm, dist, id)
 }
 \arguments{
 \item{sf}{object of class sf containing administrative boundaries.}
@@ -16,6 +16,8 @@ cal_pop_share(sf, pts, pop, epsg_utm, dist)
 \item{epsg_utm}{integer; reproject line using epsg_utm.}
 
 \item{dist}{object of class numeric; the length of a radius around pts to be considered for calculating the share of pop.}
+
+\item{id}{location ID.}
 }
 \value{
 `cal_pop_share()` returns a data.frame object with id (row ID of sf), total_pop (total population),pop_buffer (population in buffer areas), and share (% of people in buffer areas).
@@ -28,6 +30,6 @@ Compute the share of population in a certain distance from points (e.g., conflic
 admin <- sf::st_read("inst/extdata/zanzibar_dhs_adm1.shp") ##administrative boundaries
 tz <- read.csv("inst/extdata/tz.csv") \%>\%  st_as_sf(coords = c('lng', 'lat'),crs=st_crs(4326))
 pop <- raster("inst/extdata/zanzibar_ppp_2020_constrainted.tif") ##population raster
-cal_pop_share(admin, tz, pop, epsg_utm = 21035, dist = 2000)
+cal_pop_share(admin, tz, pop, epsg_utm = 21035, dist = 2000, id = "REGNAME")
 }
 }
